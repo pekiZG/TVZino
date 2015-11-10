@@ -17,6 +17,7 @@
 
 
   <!-- Custom styles for this template -->
+  <link href="css/dropzone.css" rel="stylesheet">
   <link href="css/template.css" rel="stylesheet">
 
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -42,9 +43,9 @@
       </div>
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
-          <li class="active"><a href="#">Home</a></li>
+          <li><a href="index.html">Home</a></li>
           <li><a href="#search">Search</a></li>
-          <li><a href="upload.html">Upload</a></li>
+          <li class="active"><a href="#upload">Upload</a></li>
           <li><a href="#about">About</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
@@ -56,75 +57,39 @@
   <div class="container">
 
     <div class="starter-template">
-      <h1>TVZinoSearch aplication</h1>
-      <p class="lead">Example for others on how to use <a href="http://tvz.com.hr/">http://tvz.com.hr/</a> API to search for uploaded attachments.</p>
+      <h1>TVZinoUpload aplication</h1>
+      <p class="lead">Example for others on how to use <a href="http://tvz.com.hr/">http://tvz.com.hr/</a> API to upload new attachments.</p>
     </div>
+
+
 
     <div class="row">
       <div class="col-lg-6">
         <h2>How do I use this?</h2>
         <p>
-          In the search box type a few first letters of the class subject you are looking for. Example would be <i>"Mat"</i>.
-          Autocomplete will offer you uniq board names. You may choose one using keyboard arrows and pressing enter.
-          After selecting one of the offered solutions press enter one more time. You will get list of all the attachements ever uploaded to inoTVZ forum.
+          Dear user, we know it's hard to click and select a file for upload so we made a dropzone where
+          you can drag and drop a file :)
         </p>
       </div> <!-- /.col-lg-6 -->
+            
       <div class="col-lg-6">
-        <h2>What if I find a bug?</h2>
-        <p>
-          Well that one is easy. You simply report it to some one.
-          Recomended forum thread would be <a href="http://tvz.com.hr/showthread.php?tid=1&pid=3449#pid3449">TVZino materijali</a>.
-        </p>
-      </div> <!-- /.col-lg-6 -->
-    </div> <!-- /.row -->
-
-    <div class="row">
-      <div class="col-lg-12">
-        <div class="input-group">
-          <span class="input-group-btn">
-              <button class="btn btn-default" type="button">Go!</button>
-            </span>
-          <input type="text" class="form-control" placeholder="Search for...">
-        </div> <!-- /input-group -->
-      </div> <!-- /.col-lg-12 -->
-    </div> <!-- /.row -->
-
-
-    <div class="row">
-      <div class="col-lg-12">
-
-        <!-- We can place something here -->
-
-      </div> <!-- /.col-lg-12 -->
-    </div> <!-- /.row -->
-
-    <div class="row">
-      <div class="col-lg-12">
-
-        <div class="panel panel-default">
-          <!-- Default panel contents -->
-          <div class="panel-heading">Search Results</div>
-
-          <!-- Table -->
-          <table class="table">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Filename</th>
-              </tr>
-            </thead>
-            <tbody>
-              <!--tr>
-                <th scope="row">1</th>
-                <td>filename.zip</td>
-              </tr -->
-            </tbody>
-          </table>
+        
+        <div id="dropzone">
         </div>
 
+      </div> <!-- /.col-lg-6 -->
+    </div> <!-- /.row -->
+
+
+
+    <div class="row">
+      <div class="col-lg-12">
+
       </div> <!-- /.col-lg-12 -->
     </div> <!-- /.row -->
-  </div> <!-- /.container -->
+
+  </div>
+  <!-- /.container -->
 
 
 
@@ -136,7 +101,19 @@
   <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 
   <script src="js/bootstrap.min.js"></script>
-  <script src="js/searchApp.js"></script>
+  <script src="js/dropzone.js"></script>
+
+  <script>
+    
+    var myDropzone = new Dropzone("#dropzone", { 
+      url: "http://tvz.com.hr/api/upload/index.php"
+      /*options*/ });
+    
+    myDropzone.on("queuecomplete", function () {
+        alert("All files have uploaded ");
+    });
+    
+  </script>
 
 </body>
 
